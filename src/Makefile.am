@@ -5,7 +5,6 @@ ncmpcpp_SOURCES = \
 	curses/window.cpp \
 	screens/browser.cpp \
 	screens/help.cpp \
-	screens/lastfm.cpp \
 	screens/lyrics.cpp \
 	screens/media_library.cpp \
 	screens/outputs.cpp \
@@ -38,7 +37,6 @@ ncmpcpp_SOURCES = \
 	format.cpp \
 	global.cpp \
 	helpers.cpp \
-	lastfm_service.cpp \
 	lyrics_fetcher.cpp \
 	macro_utilities.cpp \
 	mpdpp.cpp \
@@ -66,7 +64,6 @@ noinst_HEADERS = \
 	curses/window.h \
 	screens/browser.h \
 	screens/help.h \
-	screens/lastfm.h \
 	screens/lyrics.h \
 	screens/media_library.h \
 	screens/outputs.h \
@@ -108,7 +105,6 @@ noinst_HEADERS = \
 	helpers.h \
 	helpers/song_iterator_maker.h \
 	interfaces.h \
-	lastfm_service.h \
 	lyrics_fetcher.h \
 	macro_utilities.h \
 	mpdpp.h \

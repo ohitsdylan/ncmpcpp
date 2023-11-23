@@ -681,8 +681,6 @@ void BindingsConfiguration::generateDefaults()
 	}
 	if (notBound(k = stringToKey("i")))
 		bind(k, Actions::Type::ShowSongInfo);
-	if (notBound(k = stringToKey("I")))
-		bind(k, Actions::Type::ShowArtistInfo);
 	if (notBound(k = stringToKey("g")))
 		bind(k, Actions::Type::JumpToPositionInSong);
 	if (notBound(k = stringToKey("l")))

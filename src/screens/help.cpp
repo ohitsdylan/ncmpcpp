@@ -227,7 +227,6 @@ void write_bindings(NC::Scrollpad &w)
 	key(w, Type::ToggleSeparatorsBetweenAlbums, "Toggle displaying separators between albums");
 	key(w, Type::JumpToPositionInSong, "Jump to given position in playing song (formats: mm:ss, x%)");
 	key(w, Type::ShowSongInfo, "Show song info");
-	key(w, Type::ShowArtistInfo, "Show artist info");
 	key(w, Type::FetchLyricsInBackground, "Fetch lyrics for selected songs");
 	key(w, Type::ToggleLyricsFetcher, "Toggle lyrics fetcher");
 	key(w, Type::ToggleFetchingLyricsInBackground, "Toggle fetching lyrics for playing songs in background");

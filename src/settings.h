@@ -80,7 +80,6 @@ struct Configuration
 	std::string system_encoding;
 	std::string execute_on_song_change;
 	std::string execute_on_player_state_change;
-	std::string lastfm_preferred_language;
 	std::wstring progressbar;
 	std::wstring visualizer_chars;
 	size_t visualizer_fps;

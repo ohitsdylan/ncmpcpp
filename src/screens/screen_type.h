@@ -30,7 +30,6 @@ struct BaseScreen;
 enum class ScreenType {
 	Browser,
 	Help,
-	Lastfm,
 	Lyrics,
 	MediaLibrary,
 #	ifdef ENABLE_OUTPUTS

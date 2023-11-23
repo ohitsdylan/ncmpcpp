@@ -469,7 +469,6 @@ bool Configuration::read(const std::vector<std::string> &config_paths, bool igno
 	      "yes", yes_no);
 	p.add("allow_for_physical_item_deletion", &allow_for_physical_item_deletion,
 	      "no", yes_no);
-	p.add("lastfm_preferred_language", &lastfm_preferred_language, "en");
 	p.add("space_add_mode", &space_add_mode, "add_remove");
 	p.add("show_hidden_files_in_local_browser", &local_browser_show_hidden_files,
 	      "no", yes_no);

@@ -23,7 +23,6 @@
 
 #include "screens/browser.h"
 #include "screens/help.h"
-#include "screens/lastfm.h"
 #include "screens/lyrics.h"
 #include "screens/media_library.h"
 #include "screens/outputs.h"
@@ -46,8 +45,6 @@ std::string screenTypeToString(ScreenType st)
 		return "browser";
 	case ScreenType::Help:
 		return "help";
-	case ScreenType::Lastfm:
-		return "last_fm";
 	case ScreenType::Lyrics:
 		return "lyrics";
 	case ScreenType::MediaLibrary:
@@ -116,8 +113,6 @@ ScreenType stringtoStartupScreenType(const std::string &s)
 #	endif // ENABLE_VISUALIZER
 	else if (s == "lyrics")
 		result = ScreenType::Lyrics;
-	else if (s == "last_fm")
-		result = ScreenType::Lastfm;
 	return result;
 }
 
@@ -128,8 +123,6 @@ ScreenType stringToScreenType(const std::string &s)
 	{
 		if (s == "lyrics")
 			result = ScreenType::Lyrics;
-		else if (s == "last_fm")
-			result = ScreenType::Lastfm;
 		else if (s == "selected_items_adder")
 			result = ScreenType::SelectedItemsAdder;
 		else if (s == "server_info")
@@ -154,8 +147,6 @@ BaseScreen *toScreen(ScreenType st)
 			return myBrowser;
 		case ScreenType::Help:
 			return myHelp;
-		case ScreenType::Lastfm:
-			return myLastfm;
 		case ScreenType::Lyrics:
 			return myLyrics;
 		case ScreenType::MediaLibrary:

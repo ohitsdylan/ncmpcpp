@@ -45,7 +45,6 @@
 #include "screens/browser.h"
 #include "screens/help.h"
 #include "screens/media_library.h"
-#include "screens/lastfm.h"
 #include "screens/lyrics.h"
 #include "screens/playlist.h"
 #include "screens/playlist_editor.h"
@@ -136,7 +135,6 @@ void initializeScreens()
 	mySongInfo = new SongInfo;
 	myServerInfo = new ServerInfo;
 	mySortPlaylistDialog = new SortPlaylistDialog;
-	myLastfm = new Lastfm;
 
 #	ifdef HAVE_TAGLIB_H
 	myTinyTagEditor = new TinyTagEditor;
@@ -166,7 +164,6 @@ void setResizeFlags()
 	mySongInfo->hasToBeResized = 1;
 	myServerInfo->hasToBeResized = 1;
 	mySortPlaylistDialog->hasToBeResized = 1;
-	myLastfm->hasToBeResized = 1;
 
 #	ifdef HAVE_TAGLIB_H
 	myTinyTagEditor->hasToBeResized = 1;
@@ -2038,8 +2035,7 @@ void ApplyFilter::run()
 bool Find::canBeRun()
 {
 	return myScreen == myHelp
-		|| myScreen == myLyrics
-		|| myScreen == myLastfm;
+		|| myScreen == myLyrics;
 }
 
 void Find::run()
@@ -2419,45 +2415,6 @@ void ShowSongInfo::run()
 	mySongInfo->switchTo();
 }
 
-bool ShowArtistInfo::canBeRun()
-{
-	return myScreen == myLastfm
-		|| (myScreen->isActiveWindow(myLibrary->Tags)
-		    && !myLibrary->Tags.empty()
-		    && Config.media_lib_primary_tag == MPD_TAG_ARTIST)
-		|| currentSong(myScreen);
-}
-
-void ShowArtistInfo::run()
-{
-	if (myScreen == myLastfm)
-	{
-		myLastfm->switchTo();
-		return;
-	}
-	
-	std::string artist;
-	if (myScreen->isActiveWindow(myLibrary->Tags))
-	{
-		assert(!myLibrary->Tags.empty());
-		assert(Config.media_lib_primary_tag == MPD_TAG_ARTIST);
-		artist = myLibrary->Tags.current()->value().tag();
-	}
-	else
-	{
-		auto s = currentSong(myScreen);
-		assert(s);
-		artist = s->getArtist();
-	}
-	
-	if (!artist.empty())
-	{
-		myLastfm->queueJob(new LastFm::ArtistInfo(artist, Config.lastfm_preferred_language));
-		if (!isVisible(myLastfm))
-			myLastfm->switchTo();
-	}
-}
-
 bool ShowLyrics::canBeRun()
 {
 	if (myScreen == myLyrics)
@@ -2823,7 +2780,6 @@ void populateActions()
 	insert_action(new Actions::ToggleOutput());
 	insert_action(new Actions::ToggleVisualizationType());
 	insert_action(new Actions::ShowSongInfo());
-	insert_action(new Actions::ShowArtistInfo());
 	insert_action(new Actions::ShowLyrics());
 	insert_action(new Actions::Quit());
 	insert_action(new Actions::NextScreen());

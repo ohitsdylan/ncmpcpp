@@ -145,7 +145,6 @@ enum class Type
 	ToggleOutput,
 	ToggleVisualizationType,
 	ShowSongInfo,
-	ShowArtistInfo,
 	ShowLyrics,
 	Quit,
 	NextScreen,
@@ -1248,15 +1247,6 @@ struct ShowSongInfo: BaseAction
 	ShowSongInfo(): BaseAction(Type::ShowSongInfo, "show_song_info") { }
 	
 private:
-	virtual void run() override;
-};
-
-struct ShowArtistInfo: BaseAction
-{
-	ShowArtistInfo(): BaseAction(Type::ShowArtistInfo, "show_artist_info") { }
-	
-private:
-	virtual bool canBeRun() override;
 	virtual void run() override;
 };
 
