@@ -1,3 +1,10 @@
+# Ncmpcpp - maintained
+I shall maintain this fork until something meaningful happens at
+https://github.com/ncmpcpp/ncmpcpp.
+
+All build setup nightmare was replaced with a single Makefile, you may have to
+edit it since I only tested it on my system.
+
 # NCurses Music Player Client (Plus Plus)
 
 Project page - https://rybczak.net/ncmpcpp/
