@@ -1,9 +1,11 @@
 #!/bin/bash
 
-DESTDIR="/usr/"
-PREFIX="/local/"
 set -x
 cd src
+
+DESTDIR="/usr/"
+PREFIX="/local/"
+
 SOURCES="$(find . -iname "*.cpp" | tr '\n' ' ')"
 OBJECTS="$(echo "$SOURCES" | sed 's/\.cpp/.o/g')"
 
@@ -22,4 +24,9 @@ g++ -g -O2 -flto -ftree-vectorize -ffast-math -std=c++14 -o ../ncmpcpp \
     -lmpdclient -lreadline -lpthread -lncursesw -lfftw3 -lcurl -L/usr/lib -ltag \
     -lz
 
+cd ..
+
 install -Dm755 ncmpcpp ${DESTDIR}${PREFIX}/bin/ncmpcpp
+install -Dm755 doc/bindings ${DESTDIR}${PREFIX}/doc/ncmpcpp/bindings
+install -Dm755 doc/config ${DESTDIR}${PREFIX}/doc/ncmpcpp/config
+install -Dm755 doc/ncmpcpp.1 ${DESTDIR}${PREFIX}/man/man1/ncmpcpp.1
