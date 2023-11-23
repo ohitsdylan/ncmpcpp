@@ -31,4 +31,7 @@ Project page - https://rybczak.net/ncmpcpp/
 
 ### Installation:
 
-run ./00Makefile.sh
+```
+$ make
+$ sudo make install
+```
