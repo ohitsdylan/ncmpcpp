@@ -1,4 +1,5 @@
-CXXFLAGS = -DHAVE_CONFIG_H -DU_USING_ICU_NAMESPACE=0 -D_DEFAULT_SOURCE \
+CXXFLAGS = -Wall -Wextra \
+           -DHAVE_CONFIG_H -DU_USING_ICU_NAMESPACE=0 -D_DEFAULT_SOURCE \
            -I. -I.. -Isrc -I/usr/include -I/usr/include/taglib \
 		   -g -O2 -flto -ftree-vectorize -ffast-math -std=c++14
 LIBS = -lboost_date_time -lboost_filesystem -lboost_locale -lboost_program_options \
@@ -11,7 +12,7 @@ OBJECTS := $(patsubst src/%.cpp,src/%.o,$(SOURCES))
 
 all: ncmpcpp
 
-ncmpcpp: $(OBJECTS)
+ncmpcpp: $(OBJECTS) Makefile
 	$(CXX) $(CXXFLAGS) -o $@ $(OBJECTS) $(LIBS)
 
 %.o: src/%.cpp Makefile
