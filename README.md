@@ -5,6 +5,10 @@ https://github.com/ncmpcpp/ncmpcpp.
 All build setup nightmare was replaced with a single Makefile, you may have to
 edit it since I only tested it on my system.
 
+## Changes
+- Removed clock screen
+- Removed last_fm stuff
+
 # NCurses Music Player Client (Plus Plus)
 
 Project page - https://rybczak.net/ncmpcpp/
