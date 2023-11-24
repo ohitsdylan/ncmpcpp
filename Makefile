@@ -25,6 +25,6 @@ install: ncmpcpp
 	install -Dm755 doc/ncmpcpp.1 ${DESTDIR}${PREFIX}/doc/ncmpcpp/ncmpcpp.1
 
 clean:
-	rm -rf src/*.o ncmpcpp
+	rm -rf src/**.o ncmpcpp
 
 .PHONY: all install clean
