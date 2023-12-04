@@ -22,7 +22,6 @@ Project page - https://rybczak.net/ncmpcpp/
 * easy to use search engine
 * media library
 * music visualizer
-* ability to fetch artist info from last.fm
 * new display mode
 * alternative user interface
 * ability to browse and add files from outside of MPD music directory
