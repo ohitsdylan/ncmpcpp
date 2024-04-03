@@ -18,48 +18,50 @@
  *   51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA.              *
  ***************************************************************************/
 
-#ifndef NCMPCPP_SCREEN_TYPE_H
-#define NCMPCPP_SCREEN_TYPE_H
+#ifndef NCMPCPP_CLOCK_H
+#define NCMPCPP_CLOCK_H
 
-#include <string>
 #include "config.h"
 
-// forward declaration
-struct BaseScreen;
+#ifdef ENABLE_CLOCK
 
-enum class ScreenType {
-	Browser,
-#	ifdef ENABLE_CLOCK
-	Clock,
-#	endif // ENABLE_CLOCK
-	Help,
-	Lyrics,
-	MediaLibrary,
-#	ifdef ENABLE_OUTPUTS
-	Outputs,
-#	endif // ENABLE_OUTPUTS
-	Playlist,
-	PlaylistEditor,
-	SearchEngine,
-	SelectedItemsAdder,
-	ServerInfo,
-	SongInfo,
-	SortPlaylistDialog,
-#	ifdef HAVE_TAGLIB_H
-	TagEditor,
-	TinyTagEditor,
-#	endif // HAVE_TAGLIB_H
-	Unknown,
-#	ifdef ENABLE_VISUALIZER
-	Visualizer,
-#	endif // ENABLE_VISUALIZER
+#include "curses/window.h"
+#include "interfaces.h"
+#include "screens/screen.h"
+
+struct Clock: Screen<NC::Window>, Tabbable
+{
+	Clock();
+	
+	virtual void resize() override;
+	virtual void switchTo() override;
+	
+	virtual std::wstring title() override;
+	virtual ScreenType type() override { return ScreenType::Clock; }
+	
+	virtual void update() override;
+	virtual void scroll(NC::Scroll) override { }
+	
+	virtual void mouseButtonPressed(MEVENT) override { }
+	
+	virtual bool isLockable() override { return false; }
+	virtual bool isMergable() override { return true; }
+	
+private:
+	NC::Window m_pane;
+	
+	static void Prepare();
+	static void Set(int, int);
+	
+	static short disp[11];
+	static long older[6], next[6], newer[6], mask;
+	
+	static size_t Width;
+	static const size_t Height;
 };
 
-std::string screenTypeToString(ScreenType st);
+extern Clock *myClock;
 
-ScreenType stringtoStartupScreenType(const std::string &s);
-ScreenType stringToScreenType(const std::string &s);
+#endif // ENABLE_CLOCK
 
-BaseScreen *toScreen(ScreenType st);
-
-#endif // NCMPCPP_SCREEN_TYPE_H
+#endif // NCMPCPP_CLOCK_H

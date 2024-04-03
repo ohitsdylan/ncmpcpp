@@ -130,6 +130,10 @@ bool configure(int argc, char **argv)
 	#		ifdef ENABLE_VISUALIZER
 			<< " - visualizer\n"
 	#		endif
+	#		ifdef ENABLE_CLOCK
+			<< " - clock\n"
+	#		endif
+			<< "\nencoding detection: "
 	#		ifdef HAVE_LANGINFO_H
 			<< "enabled"
 	#		else

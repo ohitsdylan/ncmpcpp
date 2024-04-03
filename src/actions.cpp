@@ -43,6 +43,7 @@
 #include "curses/menu_impl.h"
 #include "bindings.h"
 #include "screens/browser.h"
+#include "screens/clock.h"
 #include "screens/help.h"
 #include "screens/media_library.h"
 #include "screens/lyrics.h"
@@ -149,6 +150,10 @@ void initializeScreens()
 	myOutputs = new Outputs;
 #	endif // ENABLE_OUTPUTS
 	
+#	ifdef ENABLE_CLOCK
+	myClock = new Clock;
+#	endif // ENABLE_CLOCK
+	
 }
 
 void setResizeFlags()
@@ -178,6 +183,9 @@ void setResizeFlags()
 	myOutputs->hasToBeResized = 1;
 #	endif // ENABLE_OUTPUTS
 	
+#	ifdef ENABLE_CLOCK
+	myClock->hasToBeResized = 1;
+#	endif // ENABLE_CLOCK
 }
 
 void resizeScreen(bool reload_main_window)
@@ -2649,6 +2657,26 @@ void ShowVisualizer::run()
 #	endif // ENABLE_VISUALIZER
 }
 
+bool ShowClock::canBeRun()
+{
+#	ifdef ENABLE_CLOCK
+	return myScreen != myClock
+#	ifdef HAVE_TAGLIB_H
+	    && myScreen != myTinyTagEditor
+#	endif // HAVE_TAGLIB_H
+	;
+#	else
+	return false;
+#	endif // ENABLE_CLOCK
+}
+
+void ShowClock::run()
+{
+#	ifdef ENABLE_CLOCK
+	myClock->switchTo();
+#	endif // ENABLE_CLOCK
+}
+
 #ifdef HAVE_TAGLIB_H
 bool ShowServerInfo::canBeRun()
 {
@@ -2796,6 +2824,7 @@ void populateActions()
 	insert_action(new Actions::ShowTagEditor());
 	insert_action(new Actions::ShowOutputs());
 	insert_action(new Actions::ShowVisualizer());
+	insert_action(new Actions::ShowClock());
 	insert_action(new Actions::ShowServerInfo());
 	for (size_t i = 0; i < AvailableActions.size(); ++i)
 	{
