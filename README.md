@@ -1,13 +1,11 @@
-# Ncmpcpp - maintained
-I shall maintain this fork until something meaningful happens at
-https://github.com/ncmpcpp/ncmpcpp.
+# ncmpcpp
+A fork of [lucas-mior's fork](https://github.com/lucas-mior/ncmpcpp-maintained) of [ncmpcpp](https://github.com/ncmpcpp/ncmpcpp) with some personal changes.
 
-All build setup nightmare was replaced with a single Makefile, you may have to
-edit it since I only tested it on my system.
+---
 
 ## Changes
-- Removed clock screen
 - Removed last_fm stuff
+- Restored clock feature
 
 # NCurses Music Player Client (Plus Plus)
 
